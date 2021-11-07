@@ -2,12 +2,10 @@ package service;
 
 import models.Movie;
 import models.Screen;
+import models.Seat;
 import models.Show;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class ShowService {
 
@@ -28,5 +26,19 @@ public class ShowService {
         Show show = new Show(showId,movie,screen,startTime,durationInSecond);
         showMap.put(showId, show);
         return showId;
+    }
+
+    public Map<String, Show> getShowMap() {
+        return showMap;
+    }
+
+    public List<Seat> findAvailableSeats(String showId) {
+        if(!showMap.containsKey(showId)){
+            System.out.println("This show with showId: "+showId+" doesn't exists!!");
+            return null;
+        }
+        Show show = showMap.get(showId);
+        List<Seat> seatList = show.getScreen().getSeatList();
+        return seatList;
     }
 }

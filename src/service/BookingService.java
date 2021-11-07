@@ -9,8 +9,13 @@ public class BookingService {
 
     private Map<String, Booking> bookingMap;
     private static BookingService bookingService;
+    private static SeatLockService seatLockService = SeatLockService.getInstance(1000);
     private BookingService(){
         bookingMap = new HashMap<>();
+    }
+
+    public Map<String, Booking> getBookingMap() {
+        return bookingMap;
     }
 
     public static BookingService getInstance(){
@@ -24,6 +29,7 @@ public class BookingService {
             System.out.println("Seat already booked. Select any other seat to book");
             return null;
         }
+        seatLockService.lockSeats(show, seats, user);
         String bookingId = UUID.randomUUID().toString();
         Booking booking = new Booking(bookingId, show, user, seats);
         bookingMap.put(bookingId, booking);

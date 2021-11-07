@@ -24,10 +24,6 @@ public class MovieService {
         return movieMap;
     }
 
-    public void setMovieMap(Map<String, Movie> movieMap) {
-        this.movieMap = movieMap;
-    }
-
     public String createMovie(String name){
         String movieId = UUID.randomUUID().toString();
         Movie movie = new Movie(movieId,name);

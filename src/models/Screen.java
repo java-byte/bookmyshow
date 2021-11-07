@@ -7,13 +7,11 @@ public class Screen {
 
     private final String id;
     private final String name;
-    private final int seatCount;
     private final Theatre theatre;
     private final List<Seat> seatList;
 
-    public Screen(String id, int seatCount, Theatre theatre, String name) {
+    public Screen(String id, Theatre theatre, String name) {
         this.id = id;
-        this.seatCount = seatCount;
         this.theatre = theatre;
         this.seatList = new ArrayList<>();
         this.name = name;
@@ -32,10 +30,6 @@ public class Screen {
 
     public String getId() {
         return id;
-    }
-
-    public int getSeatCount() {
-        return seatCount;
     }
 
     public Theatre getTheatre() {
